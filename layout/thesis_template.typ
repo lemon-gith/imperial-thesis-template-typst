@@ -3,7 +3,6 @@
 #import "/layout/acknowledgement.typ": acknowledgement as acknowledgement_layout
 #import "/layout/abstract.typ": abstract as abstract_page
 #import "/utils/print_page_break.typ": *
-#import "/utils/preamble_headings.typ": pa_heading
 
 
 #let thesis(
@@ -20,7 +19,7 @@
   submissionDate: datetime,
   abstract: "",
   acknowledgement: "",
-  transparency_ai_tools: "",
+  declarations: "",
   acronyms: (),
   is_print: false,
   main-font: "New Computer Modern",
@@ -74,7 +73,7 @@
     degree: degree_level,
     author: author,
     submissionDate: submissionDate,
-    aiUsageBody: transparency_ai_tools
+    aiUsageBody: declarations
   )
 
   print_page_break(print: is_print, to: "odd")

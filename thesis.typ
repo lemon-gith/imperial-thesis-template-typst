@@ -2,7 +2,11 @@
 
 #import "/layout/thesis_template.typ": *
 #import "/metadata.typ": *
-#import "content/acronyms.typ": acronyms
+#import "/content/preamble/acronyms.typ": acronyms
+#let abstract_body = include "/content/preamble/abstract.typ"
+#let acknowledgement_body = include "/content/preamble/acknowledgement.typ"
+#let declarations_body = include "/content/preamble/declarations.typ"
+
 
 #set document(title: paper_title, author: author)
 
@@ -18,9 +22,9 @@
   author: author,
   startDate: startDate,
   submissionDate: submissionDate,
-  abstract: include "/content/abstract.typ",
-  acknowledgement: include "/content/acknowledgement.typ",
-  transparency_ai_tools: include "/content/transparency_ai_tools.typ",
+  abstract: abstract_body,
+  acknowledgement: acknowledgement_body,
+  declarations: declarations_body,
   acronyms: acronyms
 )
 
