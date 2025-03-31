@@ -82,6 +82,8 @@
 
   print_page_break(print: is_print, to: "odd")
 
+  // --- set outline configs ---
+
   show outline.entry.where(
     level: 1
   ): it => {
@@ -92,6 +94,8 @@
   show outline.entry.where(
     level: 1
   ): set outline.entry(fill: none)
+
+  // --- end outline configs ---
 
   // Table of Contents
   outline(
@@ -143,7 +147,7 @@
   // --- Headings ---
   show heading: set block(below: 0.85em, above: 1.75em)
   show heading: set text(font: main-font)
-  set heading(numbering: "1.1")
+  set heading(numbering: "1.1.1")
   // Reference first-level headings as "chapters"
   // TODO: fix this for ic template
   show ref: it => {
@@ -158,6 +162,8 @@
       it
     }
   }
+
+  // --- Other ---
 
   show math.equation: set text(weight: 400)
 
@@ -176,11 +182,20 @@
   // Main body
   body
 
-  // TODO: revisit how the Appendix is rendered
-  // Appendix
   pagebreak()
-  heading(numbering: none)[Appendix A: Supplementary Material]
-  include("/layout/appendix.typ")
+  // reset this indentation rule since it also acts on headings
+  set par(first-line-indent: 0cm)
+
+  // Appendix
+  [  // nest in block: custom Appendix header rules
+    #counter(heading).update(0)
+    #set heading(numbering: "A")
+    #show heading: it => {
+      "Appendix " + counter(heading).display() + ": " + it.body
+    }
+
+    #include("/layout/appendix.typ")
+  ]
 
   pagebreak()
   bibliography(
