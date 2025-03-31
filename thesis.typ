@@ -24,8 +24,6 @@
   acronyms: acronyms
 )
 
-#set page(columns: 2)
-
 #include "/content/introduction.typ"
 #include "/content/background.typ"
 #include "/content/related_work.typ"

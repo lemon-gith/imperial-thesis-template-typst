@@ -3,6 +3,7 @@
 #import "/layout/acknowledgement.typ": acknowledgement as acknowledgement_layout
 #import "/layout/abstract.typ": abstract as abstract_page
 #import "/utils/print_page_break.typ": *
+#import "/utils/preamble_headings.typ": pa_heading
 
 
 #let thesis(
@@ -41,11 +42,28 @@
 
   print_page_break(print: is_print, to: "odd")
 
+  // --- set preamble formatting ---
   set page(
     margin: (left: 30mm, right: 30mm, top: 40mm, bottom: 40mm),
     numbering: "i",
     number-align: center,
   )
+  counter(page).update(1)
+
+  // TODO: isn't this the setting on each page anyways?
+  // propagate it instead of setting it here
+  set text(
+    font: main-font,
+    size: 11pt,
+    lang: "en"
+  )
+
+  set par(
+    leading: 1.2em,
+    justify: true
+  )
+
+  // --- end preamble formatting ---
 
   abstract_page(abstract)
 
@@ -65,23 +83,24 @@
 
   print_page_break(print: is_print, to: "odd")
 
-  // set paragraph spacing
-  set par(leading: 1em)
+  show outline.entry.where(
+    level: 1
+  ): it => {
+    set block(above: 2em)
+    text(weight: "bold", it)
+  }
 
-  // TODO: isn't this the setting on each page anyways?
-  // propagate it instead of setting it here
-  set text(
-    font: "New Computer Modern",
-    size: 12pt,
-    lang: "en"
-  )
+  show outline.entry.where(
+    level: 1
+  ): set outline.entry(fill: none)
 
+  // Table of Contents
   outline(
     title: {
       text(font: "New Computer Modern", 1.5em, weight: 700, "Contents")
       v(15mm)
     },
-    indent: 2em
+    indent: auto
   )
 
   print_page_break(print: is_print, to: "odd")
