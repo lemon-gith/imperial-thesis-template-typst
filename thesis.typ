@@ -1,14 +1,18 @@
+#import "@preview/minitoc:0.1.0": *
+
 #import "/layout/thesis_template.typ": *
 #import "/metadata.typ": *
 
-#set document(title: titleEnglish, author: author)
+#set document(title: paper_title, author: author)
 
 #show: thesis.with(
-  title: titleEnglish,
-  degree: degree,
+  title: paper_title,
+  subtitle: subtitle,
+  degree_type: degree_type,
+  degree_level: degree_level,
   program: program,
   report_level: report_level,
-  supervisor: supervisor,
+  supervisors: supervisors,
   advisors: advisors,
   author: author,
   startDate: startDate,

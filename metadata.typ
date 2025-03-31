@@ -1,15 +1,19 @@
 // Enter your thesis data here:
 #let university = "Imperial College London"
 #let department = "Department of Computing"
+#let logo_file = "/figures/icl_logo.png"
 #let program = "Electronic and Information Engineering"
-#let degree = "Master"
-#let report_level = "Interim"
-#let supervisor = "Dr. Marios Kogias"
-#let advisors = (/*"Karl der Krümelmonster, MSc",*/)
-#let author = "lemon-gith"
-#let titleEnglish = "<title>"
+#let degree_type = "Master of Engineering"
+#let degree_level = "Master"
+#let report_level = "Final"
+#let supervisors = ("Dr. Marios Kogias", "Prof. A. Nother",)
+#let advisors = ("Karl der Krümelmonster (MSc)",)
+#let author = "F.N. Surname"
+#let student_id = "00000000"  // CID for Imperial students
+#let paper_title = "Title of your FYP/MSc Report"
+#let subtitle = "Subtitle if needed"
+#let submissionDate = datetime(day: 23, month: 1, year: 2025)  // set this
+// these other date values can be used if a coverpage is needed
 #let startDate = datetime(day: 1, month: 10, year: 2024)
-#let submissionDate = datetime(day: 23, month: 1, year: 2025)
 #let presentationDate = datetime(day: 24, month: 1, year: 2025)
 #let feedbacklogSubmissionDate = datetime(day: 1, month: 1, year: 2024)
-#let logo_file = "/figures/icl_logo.png"

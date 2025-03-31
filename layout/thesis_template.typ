@@ -6,11 +6,12 @@
 
 #let thesis(
   title: "",
-  titleGerman: "",
-  degree: "",
+  subtitle: "",
+  degree_type: "",
+  degree_level: "",
   program: "",
   report_level: "",
-  supervisor: "",
+  supervisors: (),
   advisors: (),
   author: "",
   startDate: datetime,
@@ -24,11 +25,12 @@
 ) = {
   titlepage(
     title: title,
-    titleGerman: titleGerman,
-    degree: degree,
+    subtitle: subtitle,
+    degree_type: degree_type,
+    degree_level: degree_level,
     report_level: report_level,
     program: program,
-    supervisor: supervisor,
+    supervisors: supervisors,
     advisors: advisors,
     author: author,
     startDate: startDate,
@@ -39,17 +41,17 @@
 
   disclaimer_and_ai_tools(
     title: title,
-    degree: degree,
+    degree: degree_level,
     author: author,
     submissionDate: submissionDate,
     aiUsageBody: transparency_ai_tools
   )
 
-  print_page_break(print: is_print)
+  print_page_break(print: is_print, to: "even")
   
   acknowledgement_layout(acknowledgement)
 
-  print_page_break(print: is_print)
+  print_page_break(print: is_print, to: "even")
 
   if abstract_en != "" {
     abstract(lang: "en")[#abstract_en]
