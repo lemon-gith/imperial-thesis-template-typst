@@ -1,4 +1,3 @@
-#import "/layout/cover.typ": *
 #import "/layout/titlepage.typ": *
 #import "/layout/disclaimer.typ": *
 #import "/layout/acknowledgement.typ": acknowledgement as acknowledgement_layout
@@ -23,13 +22,6 @@
   is_print: false,
   body,
 ) = {
-  cover(
-    title: title,
-    degree: degree,
-    program: program,
-    author: author
-  )
-
   titlepage(
     title: title,
     titleGerman: titleGerman,
