@@ -1,5 +1,5 @@
-#let abstract(body, lang: "en") = {
-  let title = (en: "Abstract", de: "Zusammenfassung")
+#let abstract(body) = {
+  let title = "Abstract"
 
   set page(
     margin: (left: 30mm, right: 30mm, top: 40mm, bottom: 40mm),
@@ -7,13 +7,11 @@
     number-align: center,
   )
 
-  let body-font = "New Computer Modern"
-  let sans-font = "New Computer Modern Sans"
+  let main-font = "New Computer Modern"
 
   set text(
-    font: body-font, 
+    font: main-font,
     size: 12pt, 
-    lang: lang
   )
 
   set par(
@@ -23,7 +21,7 @@
 
   // --- Abstract ---
   v(1fr)
-  align(center, text(font: body-font, 1em, weight: "semibold", title.at(lang)))
+  align(center, text(font: main-font, 1em, weight: "semibold", title))
   
   body
   

@@ -1,3 +1,7 @@
+// TODO: grab version I edited for my interim report
+// TODO: add the Copyright Declaration thing into here (as a new page?)
+
+
 #let disclaimer_and_ai_tools(
   title: "",
   degree: "",
