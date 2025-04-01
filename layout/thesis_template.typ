@@ -52,6 +52,18 @@
   counter(page).update(1)
 
   set page(header: context [
+    // check if this page starts a new chapter
+    #let internal_page_num = here().page()
+    #let is-start-chapter = query(
+      heading.where(level:1)
+    ).map(
+      it => it.location().page()
+    ).contains(internal_page_num)
+
+    // no page number header on chapter start pages
+    #if is-start-chapter {
+      return
+    }
 
     #let page_num = counter(page).get().at(0);
     #let alignment = if calc.even(page_num) {left} else {right}
@@ -193,13 +205,12 @@
   }
   set page(header: context [
     // check if this page starts a new chapter
+    #let internal_page_num = here().page()
     #let is-start-chapter = query(
       heading.where(level:1)
     ).map(
       it => it.location().page()
-    ).contains(page)
-    // #place(top + center, [#v(8mm) #is-start-chapter])
-    // TODO: ^ make that work
+    ).contains(internal_page_num)
 
     // get current page number
     #let page_num = counter(page).get().at(0);
@@ -236,6 +247,11 @@
     } else {
       place(right, dx: 30mm, dy: 3cm, chapter_rectangle)
       place(right, dx: 26mm, dy: 3cm, chapter_circle)
+    }
+
+    // no page number header on chapter start pages
+    #if is-start-chapter {
+      return
     }
 
     // select current sub*-section
