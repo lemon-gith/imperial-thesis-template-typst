@@ -52,11 +52,12 @@
   counter(page).update(1)
 
   set page(header: context [
+
     #let page_num = counter(page).get().at(0);
-    #if calc.even(page_num) [
-      #text(fill: imperial_blue, counter(page).display())\
-      #line(length: 100%, stroke: 0.5pt + imperial_blue)
-    ]
+    #let alignment = if calc.even(page_num) {left} else {right}
+
+    #align(alignment, text(fill: imperial_blue, counter(page).display()))
+    #line(length: 100%, stroke: 0.5pt + imperial_blue)
   ], footer: [])
 
   // TODO: isn't this the setting on each page anyways?
@@ -154,10 +155,6 @@
 
   // --- set formatting configs ---
 
-  // --- Headings ---
-  show heading: set block(below: 0.85em, above: 1.75em)
-  show heading: set text(font: main-font)
-  set heading(numbering: "1.1.1")
   // Reference first-level headings as "chapters"
   // TODO: fix this for ic template
   show ref: it => {
@@ -173,7 +170,97 @@
     }
   }
 
-  // --- Other ---
+  // --- Configure Heading and Page Numbering ---
+
+  set page(numbering: "1")
+  counter(page).update(1)
+
+  set heading(numbering: "1.1.1")
+  show heading.where(
+    level: 1
+  ): it => {
+    pagebreak(weak: true)  // ensure all chapters start on new pages
+    // ensure all chapters start on odd pages
+    if calc.even(counter(page).get().at(0)) {
+      pagebreak(to: "odd")
+    }
+    v(3cm)
+    align(right, [
+      #text(3cm, fill: imperial_blue, counter(heading).display())\
+      #text(1cm, fill: imperial_blue, it.body)
+    ])
+    v(1cm)
+  }
+  set page(header: context [
+    // check if this page starts a new chapter
+    #let is-start-chapter = query(
+      heading.where(level:1)
+    ).map(
+      it => it.location().page()
+    ).contains(page)
+    // #place(top + center, [#v(8mm) #is-start-chapter])
+    // TODO: ^ make that work
+
+    // get current page number
+    #let page_num = counter(page).get().at(0);
+
+    // select current chapter
+    #let prev_ch_headings = selector(heading.where(level: 1)).before(here())
+    #let ch_level = counter(prev_ch_headings)
+    #let ch_headings = query(prev_ch_headings)
+    // TODO: fix bug, whereby starting chapter page ch_level is wrong
+    // this is due to the `before` being used, but I want the chapter heading
+    // `here` on _that_ page
+
+    #if ch_headings.len() == 0 {
+      return
+    }
+    #let last_ch_heading = ch_headings.last()
+
+    // Add chapter labels on each page
+    #let chapter_circle = circle(
+      fill: imperial_blue,
+      radius: 8mm, align(
+        horizon + center,
+        text(ch_level.display(), fill: white, size: 1cm)
+      )
+    )
+    #let chapter_rectangle = rect(
+      fill: imperial_blue,
+      height: 16mm,
+      width: 12mm
+    )
+    #if calc.even(page_num) {
+      place(left, dx: -30mm, dy: 3cm, chapter_rectangle)
+      place(left, dx: -26mm, dy: 3cm, chapter_circle)
+    } else {
+      place(right, dx: 30mm, dy: 3cm, chapter_rectangle)
+      place(right, dx: 26mm, dy: 3cm, chapter_circle)
+    }
+
+    // select current sub*-section
+    #let prev_headings = selector(heading).before(here())
+    #let curr_level = counter(prev_headings)
+    #let headings = query(prev_headings)
+
+    #let last_heading = headings.last()
+
+    // make sure all heading text is 'branded'
+    #set text(fill: imperial_blue)
+
+    #if calc.even(page_num) [
+      #counter(page).display()
+      #h(1fr)
+      CHAPTER #ch_level.display()\. #upper(last_ch_heading.body)
+    ] else [
+      #curr_level.display()\. #upper(last_heading.body)
+      #h(1fr)
+      #counter(page).display()
+    ]
+    #line(length: 100%, stroke: 0.5pt + imperial_blue)
+  ], footer: [])
+
+  // --- Text Formatting ---
 
   show math.equation: set text(weight: 400)
 
@@ -184,10 +271,6 @@
   set par(justify: true, first-line-indent: 2em)
 
   // --- end formatting configs ---
-  
-  // set page numbering for content pages
-  set page(numbering: "1")
-  counter(page).update(1)
 
   // Main body
   body
