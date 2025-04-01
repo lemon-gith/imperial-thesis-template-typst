@@ -191,11 +191,8 @@
   show heading.where(
     level: 1
   ): it => {
-    pagebreak(weak: true)  // ensure all chapters start on new pages
     // ensure all chapters start on odd pages
-    if calc.even(counter(page).get().at(0)) {
-      pagebreak(to: "odd")
-    }
+    pagebreak(weak: true, to: "odd")
     v(3cm)
     align(right, [
       #text(3cm, fill: imperial_blue, counter(heading).display())\
@@ -264,6 +261,7 @@
     // make sure all heading text is 'branded'
     #set text(fill: imperial_blue)
 
+    // add page numberings with section information
     #if calc.even(page_num) [
       #counter(page).display()
       #h(1fr)
