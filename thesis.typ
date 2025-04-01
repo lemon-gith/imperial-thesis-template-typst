@@ -2,6 +2,7 @@
 
 #import "/layout/thesis_template.typ": *
 #import "/metadata.typ": *
+
 #import "/content/preamble/acronyms.typ": acronyms
 #let abstract_body = include "/content/preamble/abstract.typ"
 #let acknowledgement_body = include "/content/preamble/acknowledgement.typ"
@@ -28,11 +29,11 @@
   acronyms: acronyms
 )
 
-#include "/content/introduction.typ"
-#include "/content/background.typ"
-#include "/content/related_work.typ"
-#include "/content/requirements_analysis.typ"
-#include "/content/system_design.typ"
-#include "/content/evaluation.typ"
-#include "/content/summary.typ"
+#include "/content/sections/introduction.typ"
+#include "/content/sections/background.typ"
+#include "/content/sections/related_work.typ"
+#include "/content/sections/requirements_analysis.typ"
+#include "/content/sections/system_design.typ"
+#include "/content/sections/evaluation.typ"
+#include "/content/sections/summary.typ"
 

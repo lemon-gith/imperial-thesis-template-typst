@@ -4,7 +4,7 @@
   acknowledgement as acknowledgement_layout
 )
 #import "/layout/abstract.typ": abstract as abstract_layout
-#import "/utils/print_page_break.typ": *
+#import "/layout/basic_section.typ": section_layout
 #import "/style/colours.typ": imperial_blue
 
 
@@ -101,7 +101,7 @@
 
   // --- Preamble Sections ---
 
-  abstract_layout(abstract)
+  section_layout("Abstract", abstract)
 
   pagebreak(to: "odd")
 
@@ -115,7 +115,7 @@
 
   pagebreak(to: "odd")
   
-  acknowledgement_layout(acknowledgement)
+  section_layout("Acknowledgements", acknowledgement)
 
   pagebreak(to: "odd")
 

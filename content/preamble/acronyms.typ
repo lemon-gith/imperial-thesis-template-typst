@@ -1,3 +1,6 @@
+// TODO: add this as a special extra function
+// like a mix between figure and footnote
+
 #let acronyms = (
   ("ACK", "Acknowledgement"),
   ("ASIC", "Application-Specific Integrated Circuit"),
