@@ -1,4 +1,6 @@
-#import "/layout/titlepage.typ": *
+// #import "@preview/minitoc:0.1.0": *
+#import "/layout/titlepage.typ": titlepage
+// TODO: split into copyright and originality disclaimers
 #import "/layout/disclaimer.typ": *
 #import "/layout/acknowledgement.typ": (
   acknowledgement as acknowledgement_layout
@@ -7,23 +9,18 @@
 #import "/layout/basic_section.typ": section_layout
 #import "/style/colours.typ": imperial_blue
 
+// bring in preamble sections content
+#let abstract_body = include "/content/preamble/abstract.typ"
+#let acknowledgements_body = include "/content/preamble/acknowledgement.typ"
+#let declarations_body = include "/content/preamble/declarations.typ"
+#import "/content/preamble/acronyms.typ": acronyms
+#import "/metadata.typ": (
+  paper_title as title, subtitle, degree_type, degree_level, program,
+  report_level, supervisors, advisors, author, startDate, submissionDate
+)
+
 
 #let thesis(
-  title: "",
-  subtitle: "",
-  degree_type: "",
-  degree_level: "",
-  program: "",
-  report_level: "",
-  supervisors: (),
-  advisors: (),
-  author: "",
-  startDate: datetime,
-  submissionDate: datetime,
-  abstract: "",
-  acknowledgement: "",
-  declarations: "",
-  acronyms: (),
   is_print: false,
   main-font: "New Computer Modern",
   body,
@@ -101,7 +98,7 @@
 
   // --- Preamble Sections ---
 
-  section_layout("Abstract", abstract)
+  section_layout("Abstract", abstract_body)
 
   pagebreak(to: "odd")
 
@@ -110,12 +107,12 @@
     degree: degree_level,
     author: author,
     submissionDate: submissionDate,
-    aiUsageBody: declarations
+    aiUsageBody: declarations_body
   )
 
   pagebreak(to: "odd")
   
-  section_layout("Acknowledgements", acknowledgement)
+  section_layout("Acknowledgements", acknowledgements_body)
 
   pagebreak(to: "odd")
 
@@ -301,7 +298,7 @@
       "Appendix " + counter(heading).display() + ": " + it.body
     }
 
-    #include("/layout/appendix.typ")
+    TODO: add Appendices here
   ]
 
   pagebreak()
