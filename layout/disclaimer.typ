@@ -10,30 +10,28 @@
   aiUsageBody: [],
   wantPagebreak: false,
   main-font: "New Computer Modern"
-) = {
+) = [
   // section title
-  align(left, text(
-    font: main-font, 5mm, weight: 700,
-    heading(numbering: none, "Transparency in the use of AI tools")
-  ))
+  = Declaration of Originality
+
+  #aiUsageBody
 
   // --- AI Usage ---
-  aiUsageBody
 
-  v(20mm)
+  #v(20mm)
 
-  if wantPagebreak {
+  #if wantPagebreak {
     pagebreak()
   }
 
   // --- Disclaimer ---  
-  text("I confirm that this " + degree + "’s thesis is my own work and I have documented all sources and material used.")
+  I confirm that this #degree\’s thesis is my own work and I have documented all sources and material used.
 
-  v(10mm)
+  #v(10mm)
   // 'signature'
-  grid(
+  #grid(
       columns: 2,
       gutter: 1fr,
       "London, " + submissionDate.display("[day].[month].[year]"), author
   )
-}
+]

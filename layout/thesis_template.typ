@@ -1,8 +1,11 @@
 #import "/layout/titlepage.typ": *
 #import "/layout/disclaimer.typ": *
-#import "/layout/acknowledgement.typ": acknowledgement as acknowledgement_layout
-#import "/layout/abstract.typ": abstract as abstract_page
+#import "/layout/acknowledgement.typ": (
+  acknowledgement as acknowledgement_layout
+)
+#import "/layout/abstract.typ": abstract as abstract_layout
 #import "/utils/print_page_break.typ": *
+#import "/style/colours.typ": imperial_blue
 
 
 #let thesis(
@@ -39,15 +42,22 @@
     submissionDate: submissionDate
   )
 
-  print_page_break(print: is_print, to: "odd")
+  pagebreak(to: "odd")
 
   // --- set preamble formatting ---
   set page(
     margin: (left: 30mm, right: 30mm, top: 40mm, bottom: 40mm),
-    numbering: "i",
-    number-align: center,
+    numbering: "i"
   )
   counter(page).update(1)
+
+  set page(header: context [
+    #let page_num = counter(page).get().at(0);
+    #if calc.even(page_num) [
+      #text(fill: imperial_blue, counter(page).display())\
+      #line(length: 100%, stroke: 0.5pt + imperial_blue)
+    ]
+  ], footer: [])
 
   // TODO: isn't this the setting on each page anyways?
   // propagate it instead of setting it here
@@ -62,11 +72,25 @@
     justify: true
   )
 
+  show heading.where(
+    level: 1
+  ): it => {
+    v(1cm)
+    align(right, text(
+      font: main-font, 9mm, fill: imperial_blue,
+        it
+      )
+    )
+    v(1cm)
+  }
+
   // --- end preamble formatting ---
 
-  abstract_page(abstract)
+  // --- Preamble Sections ---
 
-  print_page_break(print: is_print, to: "odd")
+  abstract_layout(abstract)
+
+  pagebreak(to: "odd")
 
   disclaimer_and_ai_tools(
     title: title,
@@ -76,11 +100,11 @@
     aiUsageBody: declarations
   )
 
-  print_page_break(print: is_print, to: "odd")
+  pagebreak(to: "odd")
   
   acknowledgement_layout(acknowledgement)
 
-  print_page_break(print: is_print, to: "odd")
+  pagebreak(to: "odd")
 
   // --- set outline configs ---
 
@@ -98,19 +122,11 @@
   // --- end outline configs ---
 
   // Table of Contents
-  outline(
-    title: {
-      text(font: "New Computer Modern", 1.5em, weight: 700, "Contents")
-      v(15mm)
-    },
-    indent: auto
-  )
+  outline(title: "Contents", indent: auto)
 
-  print_page_break(print: is_print, to: "odd")
+  pagebreak(to: "odd")
 
-  // List of acronyms
-  heading(numbering: none)[List of Acronyms]
-  v(1cm)
+  [= List of Acronyms]
   grid(
     align: left,
     columns: 2,
@@ -122,25 +138,19 @@
     )}
   )
 
-  print_page_break(print: is_print, to: "odd")
+  pagebreak(to: "odd")
 
-  // List of figures
-  heading(numbering: none)[List of Figures]
-  outline(
-    title:"",
-    target: figure.where(kind: image),
-  )
+  [= List of Figures]
+  outline(title: "", target: figure.where(kind: image))
 
-  print_page_break(print: is_print, to: "odd")
+  pagebreak(to: "odd")
 
-  // List of tables
-  heading(numbering: none)[List of Tables]
-  outline(
-    title: "",
-    target: figure.where(kind: table)
-  )
+  [= List of Tables]
+  outline(title: "", target: figure.where(kind: table))
 
-  print_page_break(print: is_print, to: "odd")
+  pagebreak(to: "odd")
+
+  // --- End of Preamble ---
 
   // --- set formatting configs ---
 
