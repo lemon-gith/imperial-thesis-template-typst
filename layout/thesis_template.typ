@@ -2,12 +2,9 @@
 #import "/layout/titlepage.typ": titlepage
 // TODO: split into copyright and originality disclaimers
 #import "/layout/disclaimer.typ": *
-#import "/layout/acknowledgement.typ": (
-  acknowledgement as acknowledgement_layout
-)
-#import "/layout/abstract.typ": abstract as abstract_layout
 #import "/layout/basic_section.typ": section_layout
 #import "/style/colours.typ": imperial_blue
+#import "/utils/print_pagebreak.typ": print_pagebreak
 
 // bring in preamble sections content
 #let abstract_body = include "/content/preamble/abstract.typ"
@@ -39,7 +36,7 @@
     submissionDate: submissionDate
   )
 
-  pagebreak(to: "odd")
+  print_pagebreak(print: is_print, to: "odd")
 
   // --- set preamble formatting ---
   set page(
@@ -100,7 +97,7 @@
 
   section_layout("Abstract", abstract_body)
 
-  pagebreak(to: "odd")
+  print_pagebreak(print: is_print, to: "odd")
 
   disclaimer_and_ai_tools(
     title: title,
@@ -110,11 +107,11 @@
     aiUsageBody: declarations_body
   )
 
-  pagebreak(to: "odd")
+  print_pagebreak(print: is_print, to: "odd")
   
   section_layout("Acknowledgements", acknowledgements_body)
 
-  pagebreak(to: "odd")
+  print_pagebreak(print: is_print, to: "odd")
 
   // --- set outline configs ---
 
@@ -134,7 +131,7 @@
   // Table of Contents
   outline(title: "Contents", indent: auto)
 
-  pagebreak(to: "odd")
+  print_pagebreak(print: is_print, to: "odd")
 
   [= List of Acronyms]
   grid(
@@ -148,17 +145,17 @@
     )}
   )
 
-  pagebreak(to: "odd")
+  print_pagebreak(print: is_print, to: "odd")
 
   [= List of Figures]
   outline(title: "", target: figure.where(kind: image))
 
-  pagebreak(to: "odd")
+  print_pagebreak(print: is_print, to: "odd")
 
   [= List of Tables]
   outline(title: "", target: figure.where(kind: table))
 
-  pagebreak(to: "odd")
+  print_pagebreak(print: is_print, to: "odd")
 
   // --- End of Preamble ---
 
@@ -188,8 +185,11 @@
   show heading.where(
     level: 1
   ): it => {
-    // ensure all chapters start on odd pages
-    pagebreak(weak: true, to: "odd")
+    // skip for first section
+    if not (counter(heading).get().at(0) == 1) {
+      // ensure all chapters start on odd pages
+      print_pagebreak(print: is_print, to: "odd")
+    }
     v(3cm)
     align(right, [
       #text(3cm, fill: imperial_blue, counter(heading).display())\
