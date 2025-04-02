@@ -24,11 +24,20 @@
   include "/content/appendices/appendix_c.typ",
 )
 
+#let sections = (
+  include "/content/sections/introduction.typ",
+  include "/content/sections/background.typ",
+  include "/content/sections/related_work.typ",
+  include "/content/sections/requirements_analysis.typ",
+  include "/content/sections/system_design.typ",
+  include "/content/sections/evaluation.typ",
+  include "/content/sections/summary.typ",
+)
+
 
 #let thesis(
   is_print: false,
-  main-font: "New Computer Modern",
-  body,
+  main-font: "New Computer Modern"
 ) = {
   titlepage(
     title: title,
@@ -297,7 +306,9 @@
   // --- end formatting configs ---
 
   // Main body
-  body
+  for content_section in sections {
+    content_section
+  }
 
   pagebreak()
   // reset this indentation rule since it also acts on headings
