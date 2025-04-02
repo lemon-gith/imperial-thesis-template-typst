@@ -16,6 +16,13 @@
   report_level, supervisors, advisors, author, startDate, submissionDate
 )
 
+// this has to be done manually while Typst doesn't support file operations
+#let appendices = (
+  include "/content/appendices/appendix_a.typ",
+  include "/content/appendices/appendix_b.typ",
+  include "/content/appendices/appendix_c.typ",
+)
+
 
 #let thesis(
   is_print: false,
@@ -297,11 +304,18 @@
     #show heading: it => {
       "Appendix " + counter(heading).display() + ": " + it.body
     }
+    // TODO: make these the same format as content sections
 
-    TODO: add Appendices here
+    // workaround for skipping print_pagebreak on final appendix
+    #let last_appendix = appendices.last()
+    #for appendix in appendices {
+      appendix
+      if appendix != last_appendix {
+        print_pagebreak(print: is_print, to: "odd")
+      }
+    }
   ]
 
-  pagebreak()
   bibliography(
     "/thesis.bib",
     style: "vancouver"
