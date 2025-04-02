@@ -1,7 +1,8 @@
 // #import "@preview/minitoc:0.1.0": *
 #import "/layout/titlepage.typ": titlepage
-// TODO: split into copyright and originality disclaimers
-#import "/layout/disclaimer.typ": *
+#import "/content/preamble/disclaimers.typ": (
+  copyright_declaration, originality_declaration
+)
 #import "/layout/basic_section.typ": section_layout
 #import "/style/colours.typ": imperial_blue
 #import "/utils/print_pagebreak.typ": print_pagebreak
@@ -73,8 +74,7 @@
     #line(length: 100%, stroke: 0.5pt + imperial_blue)
   ], footer: [])
 
-  // TODO: isn't this the setting on each page anyways?
-  // propagate it instead of setting it here
+  // set text configs here
   set text(
     font: main-font,
     size: 11pt,
@@ -106,13 +106,19 @@
 
   print_pagebreak(print: is_print, to: "odd")
 
-  disclaimer_and_ai_tools(
+  originality_declaration()
+
+  print_pagebreak(print: is_print, to: "odd")
+
+  copyright_declaration()
+
+  /*disclaimer_and_ai_tools(
     title: title,
     degree: degree_level,
     author: author,
     submissionDate: submissionDate,
     aiUsageBody: declarations_body
-  )
+  )*/
 
   print_pagebreak(print: is_print, to: "odd")
   
@@ -169,7 +175,7 @@
   // --- set formatting configs ---
 
   // Reference first-level headings as "chapters"
-  // TODO: fix this for ic template
+  // TODO: check this for ic template
   show ref: it => {
     let el = it.element
     if el != none and el.func() == heading and el.level == 1 {
