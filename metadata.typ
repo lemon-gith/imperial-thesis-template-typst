@@ -6,7 +6,7 @@
 #let degree_type = "Master of Engineering"
 #let degree_level = "Master"
 #let report_level = "Final"
-#let supervisors = ("Dr. Marios Kogias", "Prof. A. Nother",)
+#let supervisors = ("Dr Marios Kogias", "Prof. A. Nother",)
 #let advisors = ("Karl der Krümelmonster (MSc)",)
 #let author = "F.N. Surname"
 #let student_id = "00000000"  // CID for Imperial students
