@@ -33,23 +33,26 @@
 
   // set title and subtitle (if needed)
   v(pretitle_space)
-  align(center, text(font: main-font, 2em, weight: 100, md.paper_title))
+  align(center,
+    text(font: main-font, 2em, weight: 100, smallcaps(md.paper_title))
+  )
   v(8mm)
-  align(center, text(font: main-font, 1.4em, weight: 100, md.subtitle))
+  align(center,
+    text(font: main-font, 1.4em, weight: 100, smallcaps(md.subtitle))
+  )
 
   // add section for author and supervisor(s)
   v(postitle_space)
   align(center, text(font: main-font, 1em, weight: 100, [
     _Author_\
-    #md.author\
-    #md.student_id
+    #smallcaps(md.author)\
+    #text(size: 11pt, [CID: #md.student_id])
   ]))
 
   v(1cm)
   align(center, text(font: main-font, 1em, weight: 100, [
     _Supervised by_\
-    #md.supervisors.join("\n")\
-
+    #md.supervisors.map(x => smallcaps(x)).join("\n")
   ]))
 
   v(1cm)
@@ -58,7 +61,7 @@
   if md.advisors.len() > 0 {
     align(center, text(font: main-font, 1em, weight: 100, [
       _Advised by_\
-      #md.advisors.join("\n")
+      #md.advisors.map(x => smallcaps(x)).join("\n")
     ]))
   }
 
