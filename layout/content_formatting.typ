@@ -3,7 +3,7 @@
 
 #let content_formatting(doc,
   main-font: "New Computer Modern", font-size: 11pt, is_print: false,
-  header_section_prefix: [CHAPTER]
+  header_section_prefix: [CHAPTER], thumb_label_num_format: "1"
 ) = {
   // set heading configurations
   show heading: it => [
@@ -45,10 +45,10 @@
     // select current chapter
     #let prev_ch_headings = selector(heading.where(level: 1)).before(here())
     #let ch_headings = query(prev_ch_headings)
-    #let ch_level = counter(heading)  // top-level heading
-    // TODO: fix bug, whereby starting chapter page ch_level is wrong
-    // this is due to the `before` being used, but I want the chapter heading
-    // `here` on _that_ page
+    #let ch_level = counter(heading).get().at(0)  // top-level heading count
+    #if is-start-chapter {ch_level += 1}
+    // ^ workaround, cos `page` header is rendered before heading is evaluated
+
 
     #if ch_headings.len() == 0 {
       return
@@ -60,7 +60,10 @@
       fill: imperial_blue,
       radius: 8mm, align(
         horizon + side,
-        text(ch_level.display().first(), fill: white, size: 1cm)
+        text(
+          numbering(thumb_label_num_format, ch_level),
+          fill: white, size: 1cm
+        )
       )
     )
     #let chapter_rectangle = rect(
@@ -101,7 +104,7 @@
       #counter(page).display()
       #h(1fr)
       #header_section_prefix
-      #ch_level.display().first()\. #" "
+      #numbering(thumb_label_num_format, ch_level)\. #" "
       #upper(last_ch_heading.body)
     ] else [
       #curr_level.display()\. #" " #upper(last_heading.body)

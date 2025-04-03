@@ -95,7 +95,8 @@
 
   // set section formatting style
   #show: content_formatting.with(
-    is_print: is_print, main-font: main-font, header_section_prefix: [CHAPTER]
+    is_print: is_print, main-font: main-font,
+    header_section_prefix: [CHAPTER], thumb_label_num_format: "1"
   )
 
   // Main body
@@ -111,7 +112,8 @@
 
   // set section formatting style
   #show: content_formatting.with(
-    is_print: is_print, main-font: main-font, header_section_prefix: [APPENDIX]
+    is_print: is_print, main-font: main-font,
+    header_section_prefix: [APPENDIX], thumb_label_num_format: "A"
   )
 
   // workaround for skipping print_pagebreak on final appendix
