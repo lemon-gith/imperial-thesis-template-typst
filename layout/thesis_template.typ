@@ -10,35 +10,13 @@
 #import "/layout/basic_formatting.typ": basic_formatting
 #import "/layout/content_formatting.typ": content_formatting
 
-// bring in preamble sections content
-#let abstract_body = include "/content/preamble/abstract.typ"
-#let acknowledgements_body = include "/content/preamble/acknowledgement.typ"
-#let declarations_body = include "/content/preamble/declarations.typ"
-#import "/content/preamble/acronyms.typ": acronyms
-#import "/metadata.typ": (
-  paper_title as title, subtitle, degree_type, degree_level, program,
-  report_level, supervisors, advisors, author, startDate, submissionDate
-)
-
-// this has to be done manually while Typst doesn't support file operations
-#let appendices = (
-  include "/content/appendices/appendix_a.typ",
-  include "/content/appendices/appendix_b.typ",
-  include "/content/appendices/appendix_c.typ",
-)
-
-#let sections = (
-  include "/content/sections/introduction.typ",
-  include "/content/sections/background.typ",
-  include "/content/sections/related_work.typ",
-  include "/content/sections/requirements_analysis.typ",
-  include "/content/sections/system_design.typ",
-  include "/content/sections/evaluation.typ",
-  include "/content/sections/summary.typ",
-)
-
 
 #let thesis(
+  sections,
+  appendices,
+  abstract_body: none,
+  acknowledgements_body: none,
+  acronyms: (),
   is_print: false,
   main-font: "New Computer Modern"
 ) = [  // Titlepage section
