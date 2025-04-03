@@ -15,6 +15,7 @@
   appendices,
   abstract_body: none,
   acknowledgements_body: none,
+  conc_body: none,
   acronyms: (),
   is_print: false,
   main-font: "New Computer Modern"
@@ -104,6 +105,12 @@
     content_section
   }
 
+  #print_pagebreak(print: is_print, to: "odd")
+] + [  // Conclusions sections
+  // set section formatting style
+  #show: basic_formatting.with(main-font: main-font, font-size: 11pt)
+  // include conclusions body
+  #conc_body
   #print_pagebreak(print: is_print, to: "odd")
 ] + [  // Appendices sections
   // Appendix

@@ -5,6 +5,7 @@
 #let abstract = include "/content/preamble/abstract.typ"
 #let acknowledgements = include "/content/preamble/acknowledgement.typ"
 #import "/content/preamble/acronyms.typ": acronyms
+#let conclusions = include "/content/conclusions.typ"
 
 
 // Fill these both in with the content sections that you've modified/created
@@ -31,7 +32,7 @@
 
 // enforce that sections and
 #thesis(
-  sections, appendices, acronyms: acronyms,
+  sections, appendices, acronyms: acronyms, conc_body: conclusions,
   abstract_body: abstract, acknowledgements_body: acknowledgements,
   is_print: true, main-font: "New Computer Modern"
 )
