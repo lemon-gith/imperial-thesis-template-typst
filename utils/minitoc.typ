@@ -1,4 +1,19 @@
 #let minitoc(title: "Contents") = context [
+  // the core logic for the minitoc
+  #let outline_target = selector(
+    heading
+  ).after(here()).before(
+    query(
+      selector(heading).after(here())
+    ).filter(
+      it => it.level == 1
+    ).first().location(),
+    inclusive: false
+  )
+
+  // if empty, don't display minitoc
+  #if query(outline_target).len() == 0 {return}
+
   #place(left, text(size: 13pt, weight: "semibold", title))
   #v(5mm)
   #show outline.entry.where(
@@ -7,15 +22,9 @@
   #line(length: 100%, stroke: 0.5pt)
   // experimentally chosen formatting style for minitoc contents
   #h(8%) #box(width: 83%, inset: -2mm,
-    // the core logic for the minitoc
     outline(
       title: none,
-      target: selector(heading).after(here()).before(
-        query(
-          selector(heading).after(here())
-        ).filter(it => it.level == 1).first().location(),
-        inclusive: false
-      )
+      target: outline_target
     )
   )
   #line(length: 100%, stroke: 0.5pt)
