@@ -56,24 +56,24 @@
     #let last_ch_heading = ch_headings.last()
 
     // Add chapter labels on each page
-    #let chapter_circle = circle(
+    #let chapter_circle(side) = circle(
       fill: imperial_blue,
       radius: 8mm, align(
-        horizon + center,
+        horizon + side,
         text(ch_level.display().first(), fill: white, size: 1cm)
       )
     )
     #let chapter_rectangle = rect(
       fill: imperial_blue,
       height: 16mm,
-      width: 12mm
+      width: 16mm,
     )
     #if calc.even(page_num) {
       place(left, dx: -30mm, dy: 3cm, chapter_rectangle)
-      place(left, dx: -26mm, dy: 3cm, chapter_circle)
+      place(left, dx: -22mm, dy: 3cm, chapter_circle(left))
     } else {
       place(right, dx: 30mm, dy: 3cm, chapter_rectangle)
-      place(right, dx: 26mm, dy: 3cm, chapter_circle)
+      place(right, dx: 22mm, dy: 3cm, chapter_circle(right))
     }
 
     // make sure all heading text is 'branded'
