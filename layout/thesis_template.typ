@@ -24,6 +24,14 @@
 
   #print_pagebreak(print: is_print, to: "odd")
 ] + [  // Preamble section
+  // start page counter here
+  #counter(page).update(1)
+  // --- page settings ---
+  #set page(
+    margin: (left: 30mm, right: 30mm, top: 40mm, bottom: 40mm),
+    numbering: "i"
+  )
+
   // --- outline configurations ---
   #show outline.entry.where(
     level: 1
