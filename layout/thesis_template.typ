@@ -1,4 +1,3 @@
-// #import "@preview/minitoc:0.1.0": *
 #import "/layout/titlepage.typ": titlepage
 #import "/content/preamble/disclaimers.typ": (
   copyright_declaration, originality_declaration
