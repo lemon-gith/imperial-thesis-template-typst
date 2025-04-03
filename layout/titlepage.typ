@@ -1,6 +1,6 @@
 #import "/style/colours.typ" as clr
 #import "/metadata.typ" as md
-#import "../utils/titlepage_spacer.typ" as tps
+#import "../utils/titlepage_spacer.typ": spacer
 
 
 #let titlepage(
@@ -34,16 +34,12 @@
     number-align: center,
   )
 
-  set text(
-    font: main-font,
-    size: 12pt, 
-    lang: "en"
-  )
+  set text(font: main-font, size: 12pt, lang: "en")
 
   set par(leading: 0.5em)
 
   // pre-calculate based on the space needed for supervisors and advisors
-  let (pretitle_space, postitle_space) = tps.spacer(supervisors, advisors);
+  let (pretitle_space, postitle_space) = spacer(supervisors, advisors);
 
   // --- Title Page ---
   // place Imperial logo
