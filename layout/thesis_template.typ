@@ -20,19 +20,7 @@
   is_print: false,
   main-font: "New Computer Modern"
 ) = [  // Titlepage section
-  #titlepage(
-    title: title,
-    subtitle: subtitle,
-    degree_type: degree_type,
-    degree_level: degree_level,
-    report_level: report_level,
-    program: program,
-    supervisors: supervisors,
-    advisors: advisors,
-    author: author,
-    startDate: startDate,
-    submissionDate: submissionDate
-  )
+  #titlepage(main-font: main-font)
 
   #print_pagebreak(print: is_print, to: "odd")
 ] + [  // Preamble section
@@ -48,6 +36,7 @@
     level: 1
   ): set outline.entry(fill: none)
 
+  // set section formatting style
   #show: basic_formatting.with(main-font: main-font, font-size: 11pt)
 
   // --- content start ---
@@ -61,14 +50,6 @@
   #print_pagebreak(print: is_print, to: "odd")
 
   #copyright_declaration()
-
-  /*disclaimer_and_ai_tools(
-    title: title,
-    degree: degree_level,
-    author: author,
-    submissionDate: submissionDate,
-    aiUsageBody: declarations_body
-  )*/
 
   #print_pagebreak(print: is_print, to: "odd")
   
@@ -128,6 +109,7 @@
   #counter(heading).update(0)
   #set heading(numbering: "1.1.1")
 
+  // set section formatting style
   #show: content_formatting.with(
     is_print: is_print, main-font: main-font, header_section_prefix: [CHAPTER]
   )
@@ -143,6 +125,7 @@
   #counter(heading).update(0)
   #set heading(numbering: "A")
 
+  // set section formatting style
   #show: content_formatting.with(
     is_print: is_print, main-font: main-font, header_section_prefix: [APPENDIX]
   )
@@ -156,6 +139,9 @@
     }
   }
 ] + [  // Bibliography section
-  #show: basic_formatting
+  // set section formatting style
+  #show: basic_formatting.with(
+    main-font: main-font, font-size: 10pt
+  )
   #bibliography("/thesis.bib", style: "ieee")
 ]
