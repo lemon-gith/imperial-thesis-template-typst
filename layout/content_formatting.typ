@@ -6,6 +6,11 @@
   header_section_prefix: [CHAPTER]
 ) = {
   // set heading configurations
+  show heading: it => [
+    #v(5mm)
+    #it
+    #v(5mm)
+  ]
   show heading.where(
     level: 1
   ): it => {
