@@ -3,7 +3,8 @@
 
 #let content_formatting(doc,
   main-font: "New Computer Modern", font-size: 11pt, is_print: false,
-  header_section_prefix: [CHAPTER], thumb_label_num_format: "1"
+  header_section_prefix: [CHAPTER], thumb_label_num_format: "1",
+  par-fl_indent: 2em
 ) = {
   // set heading configurations
   show heading: it => [
@@ -118,7 +119,7 @@
 
   set text(font: main-font, size: font-size)
 
-  set par(justify: true, first-line-indent: 2em)
+  set par(justify: true, first-line-indent: par-fl_indent)
 
   show math.equation: set text(weight: 400)
 
