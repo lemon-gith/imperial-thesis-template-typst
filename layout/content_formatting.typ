@@ -80,6 +80,9 @@
       place(right, dx: 22mm, dy: 3cm, chapter_circle(right))
     }
 
+    // TODO: dynamically adapt dy based on which chapter `here` is at
+    // the package used in the LaTeX template does this
+
     // make sure all heading text is 'branded'
     #set text(fill: imperial_blue)
 
