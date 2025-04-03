@@ -17,8 +17,9 @@
     v(3cm)
     align(right, [
       #set text(font: main-font, fill: imperial_blue)
-      #text(3cm, counter(heading).display())\
-      #text(1cm, it.body)
+      #text(3cm, weight: "semibold", counter(heading).display())\
+      #v(-5mm)\  // adjust default spacing to match ic template
+      #text(9mm, it.body)
     ])
     v(1cm)
   }
