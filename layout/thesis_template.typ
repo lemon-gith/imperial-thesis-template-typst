@@ -85,21 +85,6 @@
 
   #print_pagebreak(print: is_print, to: "odd")
 ] + [  // Sections section
-  // Reference first-level headings as "chapters"
-  // TODO: check this for ic template
-  #show ref: it => {
-    let el = it.element
-    if el != none and el.func() == heading and el.level == 1 {
-      [Chapter ]
-      numbering(
-        el.numbering,
-        ..counter(heading).at(el.location())
-      )
-    } else {
-      it
-    }
-  }
-
   // reset page numbering
   #set page(numbering: "1")
   #counter(page).update(1)
