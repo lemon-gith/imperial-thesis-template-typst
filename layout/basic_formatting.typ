@@ -1,15 +1,9 @@
 #import "/style/colours.typ": imperial_blue
 
 #let basic_formatting(doc,
-  main-font: "New Computer Modern", font-size: 11pt
+  main-font: "New Computer Modern", font-size: 11pt,
+  header-chapter_name: true, header-include: true
 ) = {
-  // --- page settings ---
-  set page(
-    margin: (left: 30mm, right: 30mm, top: 40mm, bottom: 40mm),
-    numbering: "i"
-  )
-  counter(page).update(1)
-
   set page(header: context [
     // check if this page starts a new chapter
     #let internal_page_num = here().page()
@@ -20,17 +14,36 @@
     ).contains(internal_page_num)
 
     // no page number header on chapter start pages
-    #if is-start-chapter {
+    #if is-start-chapter or not header-include {
       return
     }
 
-    #let page_num = counter(page).get().at(0);
-    #let alignment = if calc.even(page_num) {left} else {right}
+    #let prev_headings = selector(heading.where(level: 1)).before(here())
+    #let last_heading = query(prev_headings).last()
 
-    #align(alignment, text(fill: imperial_blue, counter(page).display()))
+    #let header-text = if header-chapter_name {last_heading.body} else {none}
+
+    #set text(fill: imperial_blue)
+
+    #let page_num = counter(page).get().at(0);
+    #if calc.even(page_num) [
+      #counter(page).display()
+      #h(1fr)
+      #upper(header-text)
+     ] else [
+      #upper(header-text)
+      #h(1fr)
+      #counter(page).display()
+     ]
+
     #line(length: 100%, stroke: 0.5pt + imperial_blue)
   ], footer: [])
 
+  show heading: it => {
+    v(5mm)
+    it
+    v(5mm)
+  }
   show heading.where(
     level: 1
   ): it => {
