@@ -30,7 +30,7 @@
 // set up document metadata
 #set document(title: paper_title, author: author)
 
-// enforce that sections and
+// enforce that sections are manually 'loaded in'
 #thesis(
   sections, appendices, acronyms: acronyms, conc_body: conclusions,
   abstract_body: abstract, acknowledgements_body: acknowledgements,
