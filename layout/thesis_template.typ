@@ -17,6 +17,8 @@
   acknowledgements_body: none,
   conc_body: none,
   acronyms: (),
+  figure_list: true,
+  table_list: true,
   is_print: false,
   main-font: "New Computer Modern"
 ) = [  // Titlepage section
@@ -72,27 +74,33 @@
 
   #print_pagebreak(print: is_print, to: "odd")
 
-  = List of Acronyms
-  #grid(
-    align: left,
-    columns: 2,
-    row-gutter: 5mm,
-    column-gutter: 5mm,
-    ..for pair in acronyms {(
-      [#text(pair.first(), weight: "extrabold")],
-      [#pair.last()]
-    )}
-  )
+  #if acronyms != () [
+    = List of Acronyms
+    #grid(
+      align: left,
+      columns: 2,
+      row-gutter: 5mm,
+      column-gutter: 5mm,
+      ..for pair in acronyms {(
+        [#text(pair.first(), weight: "extrabold")],
+        [#pair.last()]
+      )}
+    )
+  ]
 
   #print_pagebreak(print: is_print, to: "odd")
 
-  = List of Figures
-  #outline(title: "", target: figure.where(kind: image))
+  #if figure_list [
+    = List of Figures
+    #outline(title: "", target: figure.where(kind: image))
+  ]
 
   #print_pagebreak(print: is_print, to: "odd")
 
-  = List of Tables
-  #outline(title: "", target: figure.where(kind: table))
+  #if table_list [
+    = List of Tables
+    #outline(title: "", target: figure.where(kind: table))
+  ]
 
   #print_pagebreak(print: is_print, to: "odd")
 ] + [  // Sections section
