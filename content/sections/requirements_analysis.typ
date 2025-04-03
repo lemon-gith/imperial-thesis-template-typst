@@ -1,6 +1,10 @@
+#import "/utils/minitoc.typ": minitoc
 #import "/utils/todo.typ": TODO
 
 = Requirements Analysis
+
+#minitoc()
+
 #TODO[
   This chapter follows the Requirements Analysis Document Template in @bruegge2004object. Important: Make sure that the whole chapter is independent of the chosen technology and development platform. The idea is that you illustrate concepts, taxonomies and relationships of the application domain independent of the solution domain! Cite @bruegge2004object several times in this chapter.
 

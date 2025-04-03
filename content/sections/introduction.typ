@@ -1,6 +1,10 @@
+#import "/utils/minitoc.typ": minitoc
 #import "/utils/todo.typ": TODO
 
 = Introduction
+
+#minitoc()
+
 #TODO[
   Introduce the topic of your thesis, e.g. with a little historical overview.
 ]

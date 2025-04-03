@@ -1,6 +1,10 @@
+#import "/utils/minitoc.typ": minitoc
 #import "/utils/todo.typ": TODO
 
 = Summary
+
+#minitoc()
+
 #TODO[
   This chapter includes the status of your thesis, a conclusion and an outlook about future work.
 ]
