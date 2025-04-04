@@ -48,7 +48,7 @@
 
   // set section formatting style
   #show: basic_formatting.with(
-    main-font: main-font, font-size: 11pt, header-chapter_name: false
+    main-font: main-font, font-size: 10pt, header-chapter_name: false
   )
 
   // --- content start ---
