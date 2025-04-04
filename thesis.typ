@@ -7,6 +7,19 @@
 #import "/content/preamble/acronyms.typ": acronyms
 #let conclusions = include "/content/conclusions.typ"
 
+// import the disclaimer sections you wish to include
+#import "/content/preamble/disclaimers.typ": (
+  ai_usage_body, copyright_declaration, data_availability_body,
+  ethics_body, sustainability_body,
+)
+// then define the order you want them displayed in
+#let disclaimers = (
+  ethics_body,
+  sustainability_body,
+  data_availability_body,
+  copyright_declaration,
+  ai_usage_body
+)
 
 // Fill these both in with the content sections that you've modified/created
 #let sections = (
@@ -34,5 +47,5 @@
 #thesis(
   sections, appendices, acronyms: acronyms, conc_body: conclusions,
   abstract_body: abstract, acknowledgements_body: acknowledgements,
-  is_print: true, main-font: "New Computer Modern"
+  disclaimers: disclaimers, is_print: true, main-font: "New Computer Modern"
 )

@@ -1,7 +1,5 @@
 #import "/layout/titlepage.typ": titlepage
-#import "/content/preamble/disclaimers.typ": (
-  copyright_declaration, originality_declaration
-)
+#import "/layout/disclaimers.typ": disclaimers_layout
 #import "/layout/basic_section.typ": section_layout
 #import "/style/colours.typ": imperial_blue
 #import "/utils/print_pagebreak.typ": print_pagebreak
@@ -15,6 +13,7 @@
   appendices,
   abstract_body: none,
   acknowledgements_body: none,
+  disclaimers: (),
   conc_body: none,
   acronyms: (),
   figure_list: true,
@@ -57,11 +56,7 @@
 
   #print_pagebreak(print: is_print, to: "odd")
 
-  #originality_declaration()
-
-  #print_pagebreak(print: is_print, to: "odd")
-
-  #copyright_declaration()
+  #disclaimers_layout(disclaimer_sections: disclaimers)
 
   #print_pagebreak(print: is_print, to: "odd")
   
