@@ -21,6 +21,7 @@ Fill in your thesis details in the [`metadata.typ`](/metadata.typ) file:
 - `university`, e.g. `"Imperial College London"`
 - `department`, e.g. `"Department of Computing"`
 - `logo_file` - path to university logo image, e.g. `"/figures/icl_logo.png"`
+- `location` - where are you based for this, e.g. `"Lapland"`
 - `program` - or **course**, e.g. `"Electronic and Information Engineering"`
 - `degree_type`, e.g. `"Master of Engineering"`, `"Bachelor of Science"`
 - `report_level`, e.g. `"Interim"`, `"Final"`
