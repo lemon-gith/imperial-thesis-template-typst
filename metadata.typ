@@ -4,7 +4,7 @@
 #let logo_file = "/figures/icl_logo.png"
 #let program = "Electronic and Information Engineering"
 #let degree_type = "Master of Engineering"
-#let degree_level = "Master"
+#let degree_level = degree_type.split().at(0)
 #let report_level = "Final"
 #let supervisors = ("Dr Marios Kogias", "Prof. A. Nother",)
 #let advisors = ("Karl der Krümelmonster (MSc)",)
