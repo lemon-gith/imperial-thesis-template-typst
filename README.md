@@ -53,6 +53,7 @@ Your written content goes in the files in the [`content/`](/content/) sections:
 
 To ensure that things are correctly imported and displayed, there are a few things in [`thesis.typ`](/thesis.typ), you'll need to update:
 - `sections` and `appendices` variables to include/exclude new or modified files
+- `disclaimers` variable to import and order the disclaimer sections for your thesis
 - `figure_list` and `table_list` boolean variables passed into `#thesis(...)`
   - they just define whether or not these will be displayed (default: true)
 - at the top, there are multiple includes/imports to get preamble section contents, e.g. `abstract`, `conclusions`, etc.
@@ -82,6 +83,9 @@ Though one _should_ be able to get by without needing to touch the [`layout/`](/
     - and sets configurations for the basic/content formatting layout rules
   - defines the order that sections and section content is laid out
   - resets counters and counter styling for page and heading numbering
+- [`disclaimers`](/layout/disclaimers.typ) - defines the overall of the disclaimers section
+  - feel free to change this, the current layout is just my preference
+
 
 #### Utilities
 
