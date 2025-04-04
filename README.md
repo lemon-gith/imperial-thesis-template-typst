@@ -6,9 +6,13 @@ The base template was adapted from [TUM's thesis template](https://github.com/ls
 
 (I don't plan on particularly maintaining this, but will happily merge PRs or let someone else maintain this)
 
+>[!NOTE]
+> The `main` branch contains the default template based completely on the EEE department's template\
+> The `doc_format` branch contains an adapted template that I've modified for my usage in the Computing department
+
 ## How to Use
 
->[!NOTE]
+>[!TIP]
 >This is only a template. You have to adapt the template to your thesis and discuss the structure of your thesis with your supervisor!
 
 ### 1. Set Metadata
@@ -55,7 +59,7 @@ To ensure that things are correctly imported and displayed, there are a few thin
 
 If there are things you wish to change in the base layout or otherwise, please feel free to edit the [`thesis_template`](/layout/thesis_template.typ) directly.
 
->[!NOTE]
+>[!IMPORTANT]
 > In order to maintain the `minitoc` at the start of each content section, please remember to include the `#minitoc()` command after the primary heading, e.g. `= Introduction`
 
 #### Editing the Template
