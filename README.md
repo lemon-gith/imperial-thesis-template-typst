@@ -46,7 +46,14 @@ Your written content goes in the files in the [`content/`](/content/) sections:
 - [`content/appendices/`](/content/appendices/) contains any appendices you want to add
 - [`content/conclusions`](/content/conclusions.typ) is a file for the conclusions section (sth. that Imperial added after the rest of the sections)
 
-While writing the content, if filenames are changed or files are added, make sure to update their inclusion via the `sections` and `appendices` variables in [`thesis.typ`](/thesis.typ), or by editing the [`thesis_template`](/layout/thesis_template.typ) directly.
+To ensure that things are correctly imported and displayed, there are a few things in [`thesis.typ`](/thesis.typ), you'll need to update:
+- `sections` and `appendices` variables to include/exclude new or modified files
+- `figure_list` and `table_list` boolean variables passed into `#thesis(...)`
+  - they just define whether or not these will be displayed (default: true)
+- at the top, there are multiple includes/imports to get preamble section contents, e.g. `abstract`, `conclusions`, etc.
+- [`acronyms`](/content/preamble/acronyms.typ) is a file containing a variable containing 2-tuples with acronyms to be used in the text
+
+If there are things you wish to change in the base layout or otherwise, please feel free to edit the [`thesis_template`](/layout/thesis_template.typ) directly.
 
 >[!NOTE]
 > In order to maintain the `minitoc` at the start of each content section, please remember to include the `#minitoc()` command after the primary heading, e.g. `= Introduction`
