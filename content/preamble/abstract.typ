@@ -1,4 +1,3 @@
-Note:
-  1. *paragraph:* What is the motivation of your thesis? Why is it interesting from a scientific point of view? Which main problem do you like to solve?
-  2. *paragraph:* What is the purpose of the document? What is the main content, the main contribution?
-  3. *paragraph:* What is your methodology? How do you proceed?
+The abstract is a very brief summary of the dissertation's contents. It should be about half a page
+long. Somebody unfamiliar with your project should have a good idea of what it's about having
+read the abstract alone and will know whether it will be of interest to them.
