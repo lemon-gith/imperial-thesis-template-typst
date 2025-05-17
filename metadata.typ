@@ -1,7 +1,8 @@
 // Enter your thesis data here:
 #let university = "Imperial College London"
 #let department = "Department of Computing"
-#let logo_file = "/figures/icl_logo.png"
+#let logo_file = "/style/images/icl_logo.svg"
+#let location = "London"  // city or area you're doing this thesis in
 #let program = "Electronic and Information Engineering"
 #let degree_type = "Master of Engineering"
 #let degree_level = degree_type.split().at(0)
